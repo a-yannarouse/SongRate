@@ -105,4 +105,4 @@ A music battle app where you and a friend each pick a song for a theme, and othe
 * => Home Feed (after invite sent and battle started)
 
 ## Wireframes
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+![App Wireframe](wireframe.DNG)
