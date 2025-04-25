@@ -55,20 +55,20 @@ A music battle app where you and a friend each pick a song for a theme, and othe
 
 ### 2. Screen Archetypes
 
-- [ ] Home Screen / Battle Feed
+- [x] Home Screen / Battle Feed
 * View list of current and past battles
 * Tap into a battle to vote or view results
 
-- [ ] Create Battle Screen
+- [x] Create Battle Screen
 * Select a theme and submit a song
 * Invite a friend via username or link
 
-- [ ] Battle Detail Screen
+- [x] Battle Detail Screen
 * View two submitted songs
 * Vote on your favorite
 * See voting results
 
-- [ ] Notifications Screen
+- [x] Notifications Screen
 * View challenge invites and vote reminders 
 
 ### 3. Navigation
@@ -81,28 +81,64 @@ A music battle app where you and a friend each pick a song for a theme, and othe
 
 **Flow Navigation** (Screen to Screen)
 
-- [ ] Login Screen
-* => Home Feed
-  
-- [ ] Registration Screen
-* => Home Feed
-
-- [ ] Home Feed Screen
+- [x] Home Feed Screen
 * => Battle Detail Screen (tap a battle to vote or view results)
 * => Profile Screen (optional – tap avatar or username)
 
-- [ ] Create Battle Screen
+- [x] Create Battle Screen
 * => Invite Friend Screen
 * => Home Feed (after submitting a battle)
 
-- [ ] Battle Detail Screen
+- [x] Battle Detail Screen
 * => None, but future version may support comments or reactions per battle
 
-- [ ] Notifications Screen
+- [x] Notifications Screen
 * => Battle Detail Screen (via challenge alert or vote result)
-
-- [ ] Invite Friend Screen
-* => Home Feed (after invite sent and battle started)
 
 ## Wireframes
 ![App Wireframe](assets/wireframe.jpeg)
+
+## Schema
+
+### Models
+
+| Property        | Type   | Description                                |
+|----------------|--------|--------------------------------------------|
+| `id`           | UUID   | Unique identifier for each battle          |
+| `theme`        | String | Theme of the song battle (e.g. "K-Pop")    |
+| `userA`        | String | Username of challenger                     |
+| `songA`        | String | Song submitted by challenger               |
+| `userB`        | String | Username of invited user                   |
+| `songB`        | String | Song auto-generated for invited user       |
+| `winner`       | String | Username of the winner                     |
+| `winningSong`  | String | The song that received the most votes      |
+
+---
+
+## 🔌 Networking
+
+> *Currently using local in-memory + `UserDefaults` for persistence. No backend API yet.*
+
+### Networking by Screen
+
+| Screen             | Request Type | Description                                  |
+|--------------------|--------------|----------------------------------------------|
+| `CreateBattleView` | POST         | Creates a new battle with theme + invite     |
+| `BattleDetailView` | PATCH        | Simulates votes and returns winning song     |
+| `HomeView`         | GET          | Loads past battles from local storage        |
+
+---
+
+### 🔧 Local Storage Snippets (UserDefaults)
+
+// Save battles
+if let data = try? JSONEncoder().encode(pastBattles) {
+    UserDefaults.standard.set(data, forKey: "pastBattles")
+}
+
+// Load battles
+if let data = UserDefaults.standard.data(forKey: "pastBattles"),
+   let decoded = try? JSONDecoder().decode([Battle].self, from: data) {
+    self.pastBattles = decoded
+}
+
