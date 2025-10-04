@@ -15,7 +15,6 @@ A music battle app where you and a friend each pick a song for a theme, and othe
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
 - **Category:** Entertainment & Music
 - **Mobile:** Relies on features like audio playback, push notifications, and real-time interaction, all of which are difficult to replicate well in a web-based environment. It can also integrate with Apple Music or Spotify APIs to pull in song previews, making the experience fluid and native to the mobile platform.
 - **Story:** The app turns playlists into playful battles, giving users a reason to engage daily with friends or strangers in fun, low-stakes challenges. It’s highly shareable and would likely generate excitement among peers, especially within music-loving social circles.
@@ -24,8 +23,6 @@ A music battle app where you and a friend each pick a song for a theme, and othe
 - **Scope:** A stripped-down version of the app where users simply pick songs, vote, and view the winner is still entertaining and fun to build. It can be built quickly using SwiftUI, Firebase, and Apple’s MusicKit API without needing complex backend systems or AI. It should be straight forward with less technical background possible.
 
 ## Product Spec
-
-### 1. User Stories (Required and Optional)
 
 **Required Must-have Stories**
 
